@@ -4,7 +4,7 @@
 
 This lab demonstrates the implementation of secure virtual networking in Microsoft Azure using Network Security Groups (NSGs) and Application Security Groups (ASGs).  
 
-The objective was to design and enforce controlled network access between two server tiers — Web Servers and Management Servers — in accordance with best security practices
+The objective was to design and enforce controlled network access between two server tiers: Web Servers and Management Servers, in accordance with best security practices
 
 
 ## Lab Scenario
@@ -16,21 +16,21 @@ The organization requires:
   - Management Servers
 - Each group must be placed in its own Application Security Group (ASG).
 - RDP access must be allowed only to Management Servers.
-- Web Servers must display the IIS default web page when accessed from the internet.
+- Web Servers must display the IIS default web page when accessed from the Internet.
 - Network Security Group (NSG) rules must enforce traffic control.
 
 
 
 ## Lab Objectives
 
-### Exercise 1: Create the Virtual Networking Infrastructure  
-### Exercise 2: Deploy Virtual Machines and Test Network Filters  
+### Create the Virtual Networking Infrastructure  
+### Deploy Virtual Machines and Test Network Filters  
 
 
 
 # Virtual Networking Infrastructure
 
-## Task 1: Create a Virtual Network
+## Creating a Virtual Network
 
 **Steps performed:**
 
@@ -39,12 +39,17 @@ The organization requires:
 3. Selected the appropriate Azure region.
 4. Verified successful deployment.
 
+<p align="center"><strong>Figure 1: Creating a Virtual Network</strong></p>
+
+<p align="center">
+  <img src="images/NSG1.png" width="700" height="400">
+</p>
+
 **Purpose:**  
 Establishes an isolated cloud network infrastructure to host virtual machines securely.
 
 
-
-## Task 2: Create Application Security Groups
+## Creating Application Security Groups
 
 **Steps performed:**
 
@@ -52,11 +57,23 @@ Establishes an isolated cloud network infrastructure to host virtual machines se
 2. Created an ASG named **ManagementServers-ASG**.
 3. Verified that both ASGs were successfully provisioned.
 
+<p align="center"><strong>Figure 2: Creating Application Security Group for the Web Servers </strong></p>
+
+<p align="center">
+  <img src="images/NSG2.png" width="700" height="400">
+</p>
+
+<p align="center"><strong>Figure 3: Creating Application Security Group for the Management Servers </strong></p>
+
+<p align="center">
+  <img src="images/NSG3.png" width="700" height="400">
+</p>
+
 **Purpose:**  
 Enables logical grouping of virtual machines for simplified and scalable security rule management.
 
 
-## Task 3: Create and Associate Network Security Group
+## Creating and Configuring Network Security Group
 
 **Steps performed:**
 
@@ -64,12 +81,18 @@ Enables logical grouping of virtual machines for simplified and scalable securit
 2. Configured inbound security rule settings.
 3. Associated the NSG with the subnet created earlier.
 
+<p align="center"><strong>Figure 4: Creating Network Security Group </strong></p>
+
+<p align="center">
+  <img src="images/NSG4.png" width="700" height="400">
+</p>
+
 **Purpose:**  
 Applies centralized network filtering policies at the subnet level.
 
 
 
-## Task 4: Configure Inbound NSG Security Rules
+## Configuring Inbound NSG Security Rules
 
 **Steps performed:**
 
@@ -78,12 +101,19 @@ Applies centralized network filtering policies at the subnet level.
 3. Verified priority and source settings.
 4. Ensured default deny rule blocks unauthorized traffic.
 
+<p align="center"><strong>Figure 5: Configuring Inbound NSG Rules for Web and Management Servers</strong></p>
+
+<p align="center">
+  <img src="images/NSG5.png" width="700" height="400">
+</p>
+
+
 **Purpose:**  
 Implements fine-grained access control using ASG-based targeting and enforces the principle of least privilege.
 
 
 
-# Exercise 2: Deploy Virtual Machines and Test Network Filters
+# Deploying Virtual Machines and Testing Network Filters
 
 **Steps performed:**
 
@@ -92,10 +122,47 @@ Implements fine-grained access control using ASG-based targeting and enforces th
 3. Deployed Management Server VM and assigned it to **ManagementServers-ASG**.
 4. Tested RDP access:
    - Successful connection to Management Server.
-   - RDP access blocked to Web Server.
 5. Tested web access:
    - IIS default page successfully displayed from internet browser.
 
+<p align="center"><strong>Figure 6: Assigning the Web Server VM to the Web Server ASG</strong></p>
+
+<p align="center">
+  <img src="images/NSG6.png" width="700" height="400">
+</p>
+
+
+<p align="center"><strong>Figure 7: Installing the IIS role on the Web Server VM</strong></p>
+
+<p align="center">
+  <img src="images/NSG8.png" width="700" height="400">
+</p>
+
+
+<p align="center"><strong>Figure 8: Assigning the Management Server VM to the Management Server ASG</strong></p>
+
+<p align="center">
+  <img src="images/NSG7.png" width="700" height="400">
+</p>
+
+
+<p align="center"><strong>Figure 9: Successful RDP access to the Management Servers</strong></p>
+
+<p align="center">
+  <img src="images/NSG9.png" width="700" height="400">
+</p>
+
+<p align="center"><strong>Figure 10: Web Server VM assigned Public IP address 172.184.99.84</strong></p>
+
+<p align="center">
+  <img src="images/NSG11.png" width="700" height="400">
+</p>
+
+<p align="center"><strong>Figure 11: IIS default page successfully displayed from internet browser</strong></p>
+
+<p align="center">
+  <img src="images/NSG10.png" width="700" height="400">
+</p>
 
 
 # Security Concepts Demonstrated
